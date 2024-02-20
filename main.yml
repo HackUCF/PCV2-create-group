@@ -1,0 +1,4 @@
+- name: Apply role openstack # TODO - Find out how ansible communicates to openstack for hosts management
+  hosts: deployment
+  roles:
+    - plinkoUni

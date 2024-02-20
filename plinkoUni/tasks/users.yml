@@ -1,0 +1,7 @@
+---
+- name: Add users user to plinko-uni group
+  openstack.cloud.group_assignment:
+    cloud: "{{ openstack_admin_tenant }}"
+    user: "{{ item }}"
+    group: plinko-uni
+  loop: "{{ users }}"

@@ -1,0 +1,5 @@
+- name: Create PlinkoU group and tenant
+  ansible.builtin.import_tasks: tenant.yml
+
+- name: Add users to group
+  ansible.builtin.import_tasks: users.yml

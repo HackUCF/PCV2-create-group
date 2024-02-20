@@ -1,0 +1,5 @@
+openstack_admin_tenant: kolla-admin
+
+users:
+- jontyms@infra.hackucf.org
+- c4sj@infra.hackucf.org

@@ -1,0 +1,32 @@
+---
+- name: "Create PlinkoUni tenant"
+  openstack.cloud.project:
+    cloud: "{{ openstack_admin_tenant }}"
+    description: "PlinkUni tenant"
+    domain: default
+    is_enabled: true
+    name: plinko-uni
+    state: present
+- name: Change quotas for PlinkoUni tenant
+  openstack.cloud.quota:
+    cloud: "{{ openstack_admin_tenant }}"
+    name: plinko-uni
+    instances: 100
+    cores: 100
+    volumes: 100
+    gigabytes: 1000
+    ram: 102400 # ~100GB of ram
+- name: Create a group PlinkoU
+  openstack.cloud.identity_group:
+    cloud: "{{ openstack_admin_tenant }}"
+    state: present
+    name: plinko-uni
+    description: "PlinkoUni Group"
+    domain_id: default
+- name: Grant an plinko-uni group on the plinko-uni tenant
+  openstack.cloud.role_assignment:
+    cloud: "{{ openstack_admin_tenant }}"
+    group: plinko-uni
+    role: member
+    project: plinko-uni
+
